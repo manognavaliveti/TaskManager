@@ -1,0 +1,27 @@
+<h2>PENDING TASKS</h2>
+    <span class="clearfix"></span>
+    </hr>
+    <hr>
+    </hr>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+      < <th>Task Id</th>
+        <th>TaskName</th>
+        <th>Description</th>
+        <th> lastDate</th>
+    
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="work in tasks">
+      <td>{{work.taskId}}</td>
+        <td>{{work.taskName}}</td>
+        <td>{{work.description}}</td>
+        <td>{{work.tasksOf}}</td>
+        
+        <td><button type="button" class="btn btn-primary btn-sm " data-toggle="modal"  data-target="#complete" ng-click="compend(work)">Completed</button></td>
+        
+      </tr>
+       </tbody>
+  </table>

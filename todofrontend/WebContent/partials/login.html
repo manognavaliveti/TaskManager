@@ -1,0 +1,17 @@
+<center><div>
+<table>
+ <form class="form-signin" name="logForm" >
+<h1>YourName<br><input type="text" name="name" ng-model="name" required>
+ <span  ng-show="logForm.name.$error.required" style="color:red; font-family: cursive; font-size: small;">*name field required</span>
+ <span  ng-show="logForm.name.$error.text" style="color:red; font-family: cursive; font-size: small;">not a valid name</span>
+<br>
+<h1>password<br><input type="password" name="password" ng-model="password" required>
+ <span  ng-show="logForm.password.$error.required" style="color:red; font-family: cursive; font-size: small;">*password required</span>
+ <span  ng-show="logForm.password.$error.password" style="color:red; font-family: cursive; font-size: small;">not a valid password</span>
+ <br>
+<center><button type="submit" ng-click="login()"  class="btn btn-primary btn-md"  ng-disabled="logForm.$invalid"">LOGIN</button></center>
+
+
+
+</table>
+</div>

@@ -1,0 +1,22 @@
+<div>
+<center><h1>REGISTER TO TASK MANAGER FOR EFFECTIVE ACCOMPLISHMENT OF YOUR TASKS</h1></center>
+<center><form class=signUp name="regForm">
+<h1>NAME<input type="text" name="name" ng-model="name" required>
+ <span  ng-show="regForm.name.$error.required" style="color:red; font-family: cursive; font-size: small;">*name field required</span>
+       <span  ng-show="regForm.name.$error.text" style="color:red; font-family: cursive; font-size: small;">not a valid name</span>
+<br>
+<h1>PASSWORD<input type="password" name="password" ng-model="password" required>
+ <span  ng-show="regForm.password.$error.required" style="color:red; font-family: cursive; font-size: small;">*password required</span>
+       <span  ng-show="regForm.password.$error.password" style="color:red; font-family: cursive; font-size: small;">not a valid pwd</span>
+<br>
+<h1>EMAIL-ID<input type="email" name="emailid" ng-model="emailid" required>
+ <span  ng-show="regForm.email.$error.required" style="color:red; font-family: cursive; font-size: small;">*emailid required</span>
+       <span  ng-show="regForm.emailid.$error.email" style="color:red; font-family: cursive; font-size: small;">not a valid email</span>
+<br>
+<center><button type="submit" ng-click="register()"  ng-disabled="regForm.$invalid" class="btn btn-primary btn-md">Register</button></center>
+
+
+
+</form>
+</center>
+</div>

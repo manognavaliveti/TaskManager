@@ -1,0 +1,181 @@
+ <div>
+ <hr>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New Task</button>
+<h1>ALL TASKS</h1>
+<table class="table table-striped">
+</hr>
+    <thead>
+      <tr>
+      <th>Task Id</th>
+        <th>TaskName</th>
+        <th>Description</th>
+        <th> lastDate</th>
+         <th>CreatedBy</th>
+          <th>Accomplished???</th>
+          
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="task in tasks">
+      <td>{{task.taskId}}</td>
+        <td>{{task.taskName}}</td>
+        <td>{{task.description}}</td>
+        <td>{{task.lastDate}}</td>
+      <td>{{task.tasksOf}}</td>
+       <td>{{task.status}}</td>
+      
+        <td><button type="button" class="btn btn-primary btn-sm "  data-toggle="modal" data-target="#edittask" ng-click="editTask(task)">Edit</button></td>
+         <td><button type="button" class="btn btn-primary btn-sm " data-toggle="modal"  data-target="#complete" ng-click="compend(task)">Completed</button></td>
+         <td><button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deletetask" ng-click="editTask(task)">Delete</button></td>
+      </tr>
+       </tbody>
+  </table>
+ 
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Task</h4>
+        </div>
+        <div class="modal-body">
+         <h1>{{message}}</h1>
+        <form class="form-task" name="taskForm" >
+        <h1>Title:<br><input type="text" name="taskName" ng-model="taskName" required>
+        <span  ng-show="taskForm.taskName.$error.required" style="color:red; font-family: cursive; font-size: small;">*name field required</span>
+       <span  ng-show="taskForm.taskName.$error.text" style="color:red; font-family: cursive; font-size: small;">not a valid name</span>
+        
+        <br>
+        <h1>Description:<br><input type="text" name="description" ng-model="description" required>
+        <span  ng-show="taskForm.description.$error.required" style="color:red; font-family: cursive; font-size: small;">*name field required</span>
+       <span  ng-show="taskForm.description.$error.text" style="color:red; font-family: cursive; font-size: small;">not a valid name</span>
+        <br>
+        <h1>DeadLine:<br><input type="text" name="lastDate" ng-model="lastDate" required>
+         <span  ng-show="taskForm.lastDate.$error.required" style="color:red; font-family: cursive; font-size: small;">*name field required</span>
+       <span  ng-show="taskForm.lastDate.$error.text" style="color:red; font-family: cursive; font-size: small;">not a valid name</span>
+        
+        <br>
+        <button type="submit"  class="btn btn-success" ng-click="addTask()"  ng-disabled="taskForm.$invalid">Submit</button>
+        </form></div></div></div></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="edittask" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Task</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal">
+         <div class="form-group">
+    <label class="control-label col-sm-2" for="taskId">Task_Id</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="taskId" ng-model="taskToEdit.taskId">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="taskName">TaskTitle:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="taskName" ng-model="taskToEdit.taskName">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="description">Description:</label>
+    <div class="col-sm-10"> 
+      <textarea class="form-control" id="description" ng-model="taskToEdit.description"></textarea>
+    </div>
+  </div>
+   <div class="form-group">
+    <label class="control-label col-sm-2" for="lastDate">Deadline:</label>
+    <div class="col-sm-10"> 
+      <textarea class="form-control" id="lastDate" ng-model="taskToEdit.lastDate"></textarea>
+    </div>
+  </div>
+  
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="saveEdit()" data-dismiss="modal">Save Edit</button>
+    </div>
+  </div>
+</form>
+        </div>
+        </div>
+      </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="deletetask" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Task</h4>
+        </div>
+        <div class="modal-body">
+         <strong >You are about to delete {{taskToEdit.taskId}} the task Are you sure?</strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteTask(taskToEdit)">Yes</button>
+           <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </div>
+       </div>
+      </div>
+       <!-- Modal -->
+  <div class="modal fade" id="complete" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Complete</h4>
+        </div>
+        <div class="modal-body">
+        Do you want to approve {{taskstatus.taskId}} as completed?
+        </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn-btn-default" data-dismiss="modal" 
+        ng-click="completedTask(task)">Yes</button>
+        <button type="button" class="btn-btn-default" data-dismiss="modal">No</button>
+        </div></div></div>
+        <table class="table table-striped">
+</hr>
+    <thead>
+      <tr>
+      <th>Task Id</th>
+        <th>TaskName</th>
+        <th>Description</th>
+        <th> lastDate</th>
+         <th>CreatedBy</th>
+          <th>Accomplished???</th>
+          
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="work in completedtasks">
+      <td>{{work.taskId}}</td>
+        <td>{{work.taskName}}</td>
+        <td>{{work.description}}</td>
+        <td>{{work.lastDate}}</td>
+      <td>{{work.tasksOf}}</td>
+       <td>{{work.status}}</td>
+       </tbody>
+  </table>
+      
+    </div>
